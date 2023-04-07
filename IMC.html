@@ -1,0 +1,109 @@
+<meta charset = "UFT-8">
+
+
+<script>
+	function arredonda(valor) {
+		return Math.round(valor);
+	}
+
+	function pulaLinha(numeroDeLinhas,tipo) {
+//essa função escolhe, se pulaLinha(null,null) = pula 1 linha, se pulaLinha(null,1) = pula 1 linha e acrescenta o detalhe abaixo, se pulaLinha(10,1) = vai pular 10 linhas e acrescentar hr no final, se pulaLinha(10,null) = vai pular 10 linhas e não acrescentar o detalhe no final
+
+		if (tipo == null) {
+			
+			if (numeroDeLinhas == null) {
+				document.write("<br>");} 
+
+			else {
+
+				for (var i = numeroDeLinhas ; i >= 0; i--){
+			 		
+			 		document.write("<br>");}}}
+
+		else {
+			if (numeroDeLinhas == 0) {
+				document.write("<br><hr>");} 
+
+			else {
+
+				for (var i = numeroDeLinhas ; i >= 0; i--){
+			 		
+			 		document.write("<br>"); }
+			 		document.write("<hr>");
+			 	}}}
+
+	function titulo(titulo){
+
+		document.write("<h1>" + titulo + "</h1>");
+		
+	}
+
+ 	function subTitulo(subTitulo){
+
+		document.write("<h2>" + subTitulo + "</h2>");
+		
+	}
+
+	function paragrafo(paragrafo){
+
+		document.write("<p>" + paragrafo + "</p>");
+	}
+
+	function texto(texto){
+
+		document.write(texto);
+		pulaLinha();
+	}
+
+	function imc(peso,altura) {
+		if (altura == null || peso == null){
+			alert("Erro no calculo do IMC, preencha corretamente!");}
+			 
+		else {
+			return peso / (altura*altura);
+			
+			
+		}}
+
+	function coletaDadosImc(numeroDePessoas){
+
+	//guarda os arrays com as informações que serão adicionadas por cada usuário. podendo ser 1 usurário ou 1 milhão de usuários!
+		var listaDeImcs = [];
+		var listaDeNomes = [];
+		var listaValoresENomes = [];
+
+		for (var i = numeroDePessoas - 1; i >= 0; i--) {
+			var nomeAtual = prompt("Informe o seu nome: ");
+			var pesoAtual = prompt(nomeAtual + ", digite o seu peso: ");
+			var alturaAtual = prompt(nomeAtual + ", agora digite a sua altura: ");
+			var imcAtual = imc(pesoAtual,alturaAtual);
+			//para cada usuário ele vai acrescentar na lista os dados recebidos 
+			listaDeImcs.push(arredonda(imcAtual));
+			listaDeNomes.push(nomeAtual);}
+		
+		//verificação da situação de cada usuário
+		for (var i = listaDeNomes.length - 1; i >= 0; i--) {
+			
+			if (listaDeImcs[i] < 18.5) {
+				var situação = " e está abaixo da média."} 
+			
+			if (listaDeImcs[i] > 25) {
+				var situação = " e está acima da média."}
+
+			if (listaDeImcs[i] <= 25 && listaDeImcs[i] >= 18.5) {
+				var situação = " e está na média aceitável."}
+			
+
+//para cada um dos usuários será criado uma lista com todos esses dados!
+			listaValoresENomes.unshift("O "+listaDeNomes[i] +" tem IMC de: "+ listaDeImcs[i] + situação +"<br>");}
+	//retorno da lista de dados já configurada para pular linhas a cada usuário	
+		return 	listaValoresENomes
+		
+		}
+		
+		
+	
+//imprime a pergunta para 2 pessoas calcularem os seus imcs, podendo alternar a depender da quantidade de usuários que você deseja!
+texto(coletaDadosImc(2));
+
+</script>
